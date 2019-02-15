@@ -5,8 +5,7 @@ Exposses three APIs:
 2. /inventory/{name} - Updates product inventory (default 200). Annoted by @CacheEvict
 3. /product/add/{name} - Add product by name. Annotated by @CachePut
 
-How to run:
-mvn spring-boot:run
+Command to run with embedded tomcat:<br>mvn spring-boot:run
 
 
 
