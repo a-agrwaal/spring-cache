@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2018 D. E. Shaw & Co., L.P. All rights reserved.
+   
+   This software is the confidential and proprietary information
+   of D. E. Shaw & Co., L.P. ("Confidential Information")
+-->
+<configuration>
+	<springProperty name="logfile" source="logging.file"
+		defaultValue="default-log-file" />
+	<springProperty name="logpath" source="logging.path"
+		defaultValue="default-log-path" />
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread])
+				%highlight(%-5level) %logger{36}.%M - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="SAVE-TO-FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logfile}</file>
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level
+				%logger{36}.%M - %msg%n</Pattern>
+		</encoder>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logpath}/archived/log_%d{dd-MM-yyyy}.log
+			</fileNamePattern>
+			<maxHistory>10</maxHistory>
+			<totalSizeCap>100MB</totalSizeCap>
+		</rollingPolicy>
+	</appender>
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="SAVE-TO-FILE" />
+	</root>
+
+
+	<logger name="com.tech.demo" additivity="false" level="info">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="SAVE-TO-FILE" />
+	</logger>
+
+</configuration>
