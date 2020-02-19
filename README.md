@@ -6,7 +6,10 @@ Uses Jedis as a client. Based on spring boot 2.1.1 release.
 2. /inventory/{name} - Updates product inventory (default 200). Annoted by @CacheEvict
 3. /product/add/{name} - Add product by name. Annotated by @CachePut
 
-Command to run with embedded tomcat:<br>mvn spring-boot:run
-
+## How to run 
+Following is command to run with embedded tomcat:<br>
+```
+mvn spring-boot:run
+```
 
 
